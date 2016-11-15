@@ -11,7 +11,7 @@ public class SaleDetails {
 	
 	//Constructors
 	public SaleDetails() {
-		this("00/00/00", 0.0f, 0.0f, 0, false);
+		this("Unkown", 0.0f, 0.0f, 0, false);
 	}
 	
 	public SaleDetails(String releaseDate, float usedPrice, float newPrice, int stock, boolean usedAvailable) {
