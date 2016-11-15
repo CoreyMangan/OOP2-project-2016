@@ -11,7 +11,7 @@ public class SaleDetails {
 	
 	//Constructors
 	public SaleDetails() {
-		this("00/00/00", 0.0, 0.0, 0, false);
+		this("00/00/00", 0.0f, 0.0f, 0, false);
 	}
 	
 	public SaleDetails(String releaseDate, float usedPrice, float newPrice, int stock, boolean usedAvailable) {
@@ -41,5 +41,26 @@ public class SaleDetails {
 	
 	public void setUsedAvailable(boolean usedAvailable) {
 		this.usedAvailable = usedAvailable;
+	}
+	
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+	
+	public float getUsedPrice() {
+		return usedPrice;
+	}
+	
+	public float getNewPrice() {
+		return newPrice;
+	}
+	
+	public boolean getUsedAvailable() {
+		return usedAvailable;
+	}
+	
+	public String toString() {
+		return String.format("Release Date: %s\n UsedPrice: %.2f\n NewPrice %.2f\n UsedAvailable %s\n",
+							getReleaseDate(), getUsedPrice(), getNewPrice(), getUsedAvailable());
 	}
 }
