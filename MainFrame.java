@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class MainFrame extends JFrame implements ActionListener{
 	JMenu fileMenu, gameMenu;
@@ -31,12 +32,17 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		//Action When "New" is pressed
 		if(menuName.equals("New")) {
-			JOptionPane.showMessageDialog(null, "New File Created");
+			createTextFile();
 		}
 		
 		//Action When "Save" is pressed
 		if(menuName.equals("Save")) {
 			JOptionPane.showMessageDialog(null, "File Saved");
+		}
+		
+		//Action When "Delete" is pressed
+		if(menuName.equals("Delete")) {
+			deleteTextFile();
 		}
 		
 		//Action When "Exit" is pressed
@@ -63,8 +69,14 @@ public class MainFrame extends JFrame implements ActionListener{
 		item.setBackground(new Color(0xccccff));
 		fileMenu.add(item);
 		
-		//Creating "save" menu item
+		//Creating "Save" menu item
 		item = new JMenuItem("Save");
+		item.addActionListener(this);
+		item.setBackground(new Color(0xccccff));
+		fileMenu.add(item);
+		
+		//Creating "Delete" menu item
+		item = new JMenuItem("Delete");
 		item.addActionListener(this);
 		item.setBackground(new Color(0xccccff));
 		fileMenu.add(item);
@@ -102,5 +114,37 @@ public class MainFrame extends JFrame implements ActionListener{
 		item.addActionListener(this);
 		item.setBackground(new Color(0xccccff));
 		gameMenu.add(item);
+	}
+	
+	//Creates a txt file to store game details
+	public void createTextFile() {
+		try {
+				File f = new File("GameDetails.txt");
+				
+				if(f.createNewFile()) {
+					JOptionPane.showMessageDialog(null, "New File Created");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "File alread Exists");
+				}
+			} catch(IOException ex) {
+				ex.printStackTrace();
+			}
+	}
+	
+	//Deleting the txt file that was created
+	public void deleteTextFile() {
+		try {
+			File f = new File("GameDetails.txt");
+			
+			if(f.delete()) {
+				JOptionPane.showMessageDialog(null, f.getName() + " File is Deleted");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "File doesn't Exists");
+			}
+		}catch(Exception ex2) {
+				ex2.printStackTrace();
+			}
 	}
 }
