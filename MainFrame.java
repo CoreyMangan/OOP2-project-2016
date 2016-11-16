@@ -9,6 +9,8 @@ public class MainFrame extends JFrame implements ActionListener{
 	Container cPane = getContentPane();
 	JLabel text;
 	boolean isFile;
+	File f = new File("GameDetails.txt");
+	String s;
 	
 	//Setup JFrame
 	public MainFrame() {
@@ -27,6 +29,11 @@ public class MainFrame extends JFrame implements ActionListener{
 		menuBar.setBackground(new Color(0xeeddcc));
 		menuBar.add(fileMenu);
 		menuBar.add(gameMenu);
+		
+		text = new JLabel();
+		cPane.add(text);
+		checkFileExists();
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -35,10 +42,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		//Action when "New" is pressed
 		if(menuName.equals("New")) {
 			createTextFile();
-			
-			text = new JLabel ("'Games > Add' to add a new game to the list");
-			cPane.add(text);
-			validate();
+			checkFileExists();
 		}
 		
 		//Action when "Save" is pressed
@@ -49,6 +53,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		//Action when "Delete" is pressed
 		if(menuName.equals("Delete")) {
 			deleteTextFile();
+			checkFileExists();
 		}
 		
 		//Action when "Exit" is pressed
@@ -141,7 +146,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	//Creates a txt file to store game details
 	public void createTextFile() {
 		try {
-				File f = new File("GameDetails.txt");
+				//File f = new File("GameDetails.txt");
 				isFile = true;
 				
 				if(f.createNewFile()) {
@@ -158,7 +163,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	//Deleting the txt file that was created
 	public void deleteTextFile() {
 		try {
-			File f = new File("GameDetails.txt");
+			//File f = new File("GameDetails.txt");
 			isFile = false;
 			
 			if(f.delete()) {
@@ -170,5 +175,18 @@ public class MainFrame extends JFrame implements ActionListener{
 		}catch(Exception ex2) {
 				ex2.printStackTrace();
 			}
+	}
+	
+	public void checkFileExists() {
+		if(f.exists()) {
+			//text = new JLabel ("'Games > Add' to add a new game to the list");
+			//cPane.add(text);
+			text.setText("'Games > Add' to add a new game to the list");
+		} else if(!f.exists()) {
+			//text = new JLabel ("");
+			//cPane.add(text);
+			text.setText("");
+		}
+		validate();
 	}
 }
