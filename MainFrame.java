@@ -7,6 +7,8 @@ public class MainFrame extends JFrame implements ActionListener{
 	JMenu fileMenu, gameMenu;
 	JMenuBar menuBar;
 	Container cPane = getContentPane();
+	JLabel text;
+	boolean isFile;
 	
 	//Setup JFrame
 	public MainFrame() {
@@ -30,25 +32,45 @@ public class MainFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String menuName= e.getActionCommand();
 		
-		//Action When "New" is pressed
+		//Action when "New" is pressed
 		if(menuName.equals("New")) {
 			createTextFile();
+			
+			text = new JLabel ("'Games > Add' to add a new game to the list");
+			cPane.add(text);
+			validate();
 		}
 		
-		//Action When "Save" is pressed
+		//Action when "Save" is pressed
 		if(menuName.equals("Save")) {
 			JOptionPane.showMessageDialog(null, "File Saved");
 		}
 		
-		//Action When "Delete" is pressed
+		//Action when "Delete" is pressed
 		if(menuName.equals("Delete")) {
 			deleteTextFile();
 		}
 		
-		//Action When "Exit" is pressed
+		//Action when "Exit" is pressed
 		if(menuName.equals("Exit")) {
 			JOptionPane.showMessageDialog(null, "Exiting Program... GoodBye!");
 			System.exit(0);
+		}
+		
+		//Action when "Add" is pressed
+		if(menuName.equals("Add")) {
+			if(isFile) {
+					AddGameFrame agf = new AddGameFrame();
+					agf.setVisible(true);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "No File Found", "Error", JOptionPane.WARNING_MESSAGE);
+			}
+		}
+		
+		//Action when "Display" is pressed
+		if(menuName.equals("Display")) {
+			
 		}
 	}
 	
@@ -120,6 +142,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	public void createTextFile() {
 		try {
 				File f = new File("GameDetails.txt");
+				isFile = true;
 				
 				if(f.createNewFile()) {
 					JOptionPane.showMessageDialog(null, "New File Created");
@@ -136,6 +159,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	public void deleteTextFile() {
 		try {
 			File f = new File("GameDetails.txt");
+			isFile = false;
 			
 			if(f.delete()) {
 				JOptionPane.showMessageDialog(null, f.getName() + " File is Deleted");
