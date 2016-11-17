@@ -146,8 +146,6 @@ public class MainFrame extends JFrame implements ActionListener{
 	//Creates a txt file to store game details
 	public void createTextFile() {
 		try {
-				//File f = new File("GameDetails.txt");
-				isFile = true;
 				
 				if(f.createNewFile()) {
 					JOptionPane.showMessageDialog(null, "New File Created");
@@ -163,8 +161,6 @@ public class MainFrame extends JFrame implements ActionListener{
 	//Deleting the txt file that was created
 	public void deleteTextFile() {
 		try {
-			//File f = new File("GameDetails.txt");
-			isFile = false;
 			
 			if(f.delete()) {
 				JOptionPane.showMessageDialog(null, f.getName() + " File is Deleted");
@@ -179,12 +175,10 @@ public class MainFrame extends JFrame implements ActionListener{
 	
 	public void checkFileExists() {
 		if(f.exists()) {
-			//text = new JLabel ("'Games > Add' to add a new game to the list");
-			//cPane.add(text);
+			isFile = true;
 			text.setText("'Games > Add' to add a new game to the list");
 		} else if(!f.exists()) {
-			//text = new JLabel ("");
-			//cPane.add(text);
+			isFile = false;
 			text.setText("");
 		}
 		validate();
