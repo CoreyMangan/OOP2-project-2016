@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.*;
 
 public class MainFrame extends JFrame implements ActionListener, Serializable{
 	JMenu fileMenu, gameMenu;
@@ -12,6 +13,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	File f = new File("GameDetails.txt");
 	String s;
 	GameDetails GD = new GameDetails();
+	ArrayList gameList = new ArrayList();
 	
 	//Setup JFrame
 	public MainFrame() {
@@ -80,8 +82,10 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		
 		//Action when "Display" is pressed
 		if(menuName.equals("Display")) {
-				AddGameFrame agf = new AddGameFrame();
-				agf.setVisible(true);
+			readFile();
+			AddGameFrame agf = new AddGameFrame();
+			agf.setVisible(true);
+			JOptionPane.showMessageDialog(null, gameList);
 		}
 	}
 	
@@ -202,6 +206,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		GD.setStock(Integer.parseInt(JOPSID("Stock: ")));
 		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));*/
 		
+		gameList.add(GD.toString());
 		JOptionPane.showMessageDialog(null, "Details added to Game List");
 	}
 	
@@ -214,12 +219,23 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	public void saveFile(){
 		try {
 			FileOutputStream fos = new FileOutputStream("GameDetails.txt");
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(GD.toString());
-		oos.close();	
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(gameList);
+			oos.close();	
 		} catch(Exception ex3) {
 			JOptionPane.showMessageDialog(null, "File Not Found");
 		}
 		
+	}
+	
+	public void readFile() {
+		try {
+			FileInputStream fis = new FileInputStream("GameDetails.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			//ois.readObject(oos);
+			ois.close();
+		}  catch(Exception ex4) {
+			JOptionPane.showMessageDialog(null, "File Not Found");
+		}
 	}
 }
