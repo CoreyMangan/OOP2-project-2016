@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.List;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -26,6 +27,16 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		
 		addDetails();
 		gameList.add(GD.toString());
+		
+		JTextArea jta = new JTextArea();
+		jta.append(GD.toString());
+		JOptionPane.showMessageDialog(null, jta);
+		
+		JTextArea jta2 = new JTextArea(5, 20);
+		JScrollPane SP = new JScrollPane(jta2);
+		jta2.setEditable(false);
+		jta2.append(gameList.toString());
+		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -89,16 +100,20 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		GD.setGenre(JOPSID("Genre: "));
 		GD.setAgeRating(Integer.parseInt(JOPSID("Age Rating: ")));
 		GD.setPlatform(JOPSID("Platform: "));
-		GD.setReleaseDate(JOPSID("Release Date: "));
+		/*GD.setReleaseDate(JOPSID("Release Date: "));
 		GD.setUsedPrice(Float.parseFloat(JOPSID("Used Price: ")));
 		GD.setNewPrice(Float.parseFloat(JOPSID("New Price: ")));
 		GD.setStock(Integer.parseInt(JOPSID("Stock: ")));
-		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));
+		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));*/
 	}
 	
 	public String JOPSID(String msg) {
 		String s;
 		s = JOptionPane.showInputDialog(msg);
 		return s;
+	}
+	
+	public ArrayList getList() {
+		return gameList;
 	}
 }

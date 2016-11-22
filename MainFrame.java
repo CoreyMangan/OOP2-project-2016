@@ -75,7 +75,8 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		//Action when "Display" is pressed
 		if(menuName.equals("Display")) {
-			
+				AddGameFrame agf = new AddGameFrame();
+				agf.setVisible(true);
 		}
 	}
 	

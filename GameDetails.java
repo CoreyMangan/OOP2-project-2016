@@ -70,7 +70,7 @@ public class GameDetails extends SaleDetails{
 	}
 	
 	public String toString() {
-		return String.format("Title: %s\n Description: %s\n Genre: %s\n AgeRating: %s\n Platform: %s\n",
-							getTitle(), getDesc(), getGenre(), getAgeRating(), getPlatform());
+		return String.format("Title: %s\n Description: %s\n Genre: %s\n AgeRating: %s\n Platform: %s\n %s\n",
+							getTitle(), getDesc(), getGenre(), getAgeRating(), getPlatform(), getSD());
 	}
 }
