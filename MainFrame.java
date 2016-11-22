@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class MainFrame extends JFrame implements ActionListener{
+public class MainFrame extends JFrame implements ActionListener, Serializable{
 	JMenu fileMenu, gameMenu;
 	JMenuBar menuBar;
 	Container cPane = getContentPane();
@@ -11,6 +11,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	boolean isFile;
 	File f = new File("GameDetails.txt");
 	String s;
+	GameDetails GD = new GameDetails();
 	
 	//Setup JFrame
 	public MainFrame() {
@@ -47,6 +48,11 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		//Action when "Save" is pressed
 		if(menuName.equals("Save")) {
+			//try {
+				saveFile();
+			/*} catch(Exception ex3) {
+				JOptionPane.showMessageDialog(null, "File Not Found");
+			}*/
 			JOptionPane.showMessageDialog(null, "File Saved");
 		}
 		
@@ -65,8 +71,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		//Action when "Add" is pressed
 		if(menuName.equals("Add")) {
 			if(isFile) {
-					AddGameFrame agf = new AddGameFrame();
-					agf.setVisible(true);
+				addDetails();
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "No File Found", "Error", JOptionPane.WARNING_MESSAGE);
@@ -183,5 +188,38 @@ public class MainFrame extends JFrame implements ActionListener{
 			text.setText("");
 		}
 		validate();
+	}
+	
+		void addDetails() {
+		GD.setTitle(JOPSID("Title: "));
+		GD.setDesc(JOPSID("Description: "));
+		GD.setGenre(JOPSID("Genre: "));
+		GD.setAgeRating(Integer.parseInt(JOPSID("Age Rating: ")));
+		GD.setPlatform(JOPSID("Platform: "));
+		/*GD.setReleaseDate(JOPSID("Release Date: "));
+		GD.setUsedPrice(Float.parseFloat(JOPSID("Used Price: ")));
+		GD.setNewPrice(Float.parseFloat(JOPSID("New Price: ")));
+		GD.setStock(Integer.parseInt(JOPSID("Stock: ")));
+		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));*/
+		
+		JOptionPane.showMessageDialog(null, "Details added to Game List");
+	}
+	
+	public String JOPSID(String msg) {
+		String s;
+		s = JOptionPane.showInputDialog(msg);
+		return s;
+	}
+	
+	public void saveFile(){
+		try {
+			FileOutputStream fos = new FileOutputStream("GameDetails.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(GD.toString());
+		oos.close();	
+		} catch(Exception ex3) {
+			JOptionPane.showMessageDialog(null, "File Not Found");
+		}
+		
 	}
 }

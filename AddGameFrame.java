@@ -25,12 +25,10 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		//createTextFields();
 		//createLayout();
 		
-		addDetails();
+		//addDetails();
 		gameList.add(GD.toString());
 		
-		JTextArea jta = new JTextArea();
-		jta.append(GD.toString());
-		JOptionPane.showMessageDialog(null, jta);
+		displayList();
 		
 		JTextArea jta2 = new JTextArea(5, 20);
 		JScrollPane SP = new JScrollPane(jta2);
@@ -94,26 +92,31 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		layout.putConstraint(SpringLayout.NORTH, tfTitle, 5, SpringLayout.NORTH, cPane);
 	}*/
 	
-	void addDetails() {
+	/*void addDetails() {
 		GD.setTitle(JOPSID("Title: "));
 		GD.setDesc(JOPSID("Description: "));
 		GD.setGenre(JOPSID("Genre: "));
 		GD.setAgeRating(Integer.parseInt(JOPSID("Age Rating: ")));
 		GD.setPlatform(JOPSID("Platform: "));
-		/*GD.setReleaseDate(JOPSID("Release Date: "));
+		GD.setReleaseDate(JOPSID("Release Date: "));
 		GD.setUsedPrice(Float.parseFloat(JOPSID("Used Price: ")));
 		GD.setNewPrice(Float.parseFloat(JOPSID("New Price: ")));
 		GD.setStock(Integer.parseInt(JOPSID("Stock: ")));
-		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));*/
-	}
+		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));
+	}*/
 	
-	public String JOPSID(String msg) {
+	/*public String JOPSID(String msg) {
 		String s;
 		s = JOptionPane.showInputDialog(msg);
 		return s;
-	}
+	}*/
 	
 	public ArrayList getList() {
 		return gameList;
+	}
+	
+	public void displayList() {
+		JLabel lbl = new JLabel(GD.toString());
+		cPane.add(lbl);
 	}
 }
