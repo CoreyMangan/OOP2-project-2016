@@ -19,16 +19,13 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		setLocation(450,350);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
+		cPane.setLayout(layout);
+		//createLabels();
+		//createTextFields();
+		//createLayout();
 		
-		/*tfTitle = new JTextField();
-		tfTitle.setPreferredSize(new Dimension(50,20));
-		cPane.add(tfTitle);
-		
-		GD.setTitle(tfTitle.getText());*/
-		
-		createLabels();
-		createTextFields();
-		createLayout();
+		addDetails();
+		gameList.add(GD.toString());
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -66,8 +63,8 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		createTextField(tfTitle);
 		GD.setTitle(tfTitle.getText());
 		
-		createTextField(tfDesc);
-		GD.setDesc(tfDesc.getText());
+		/*createTextField(tfDesc);
+		GD.setDesc(tfDesc.getText());*/
 	}
 	
 	public void createTextField(JTextField field){
@@ -76,13 +73,32 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		cPane.add(field);
 	}
 	
-	public void createLayout() {
-		cPane.setLayout(layout);
+	/*public void createLayout() {
 		
-		/*layout.putConstraint(SpringLayout.WEST, lblTitle, 5, SpringLayout.WEST, cPane);
-		layout.putConstraint(SpringLayout.NORTH, lblTitle, 5, SpringLayout.NORTH, cPane);
 		
 		layout.putConstraint(SpringLayout.WEST, tfTitle, 5, SpringLayout.EAST, lblTitle);
-		layout.putConstraint(SpringLayout.NORTH, tfTitle, 5, SpringLayout.NORTH, cPane);*/
+		layout.putConstraint(SpringLayout.NORTH, tfTitle, 5, SpringLayout.NORTH, lblTitle);
+		
+		layout.putConstraint(SpringLayout.WEST, tfTitle, 5, SpringLayout.EAST, lblTitle);
+		layout.putConstraint(SpringLayout.NORTH, tfTitle, 5, SpringLayout.NORTH, cPane);
+	}*/
+	
+	void addDetails() {
+		GD.setTitle(JOPSID("Title: "));
+		GD.setDesc(JOPSID("Description: "));
+		GD.setGenre(JOPSID("Genre: "));
+		GD.setAgeRating(Integer.parseInt(JOPSID("Age Rating: ")));
+		GD.setPlatform(JOPSID("Platform: "));
+		GD.setReleaseDate(JOPSID("Release Date: "));
+		GD.setUsedPrice(Float.parseFloat(JOPSID("Used Price: ")));
+		GD.setNewPrice(Float.parseFloat(JOPSID("New Price: ")));
+		GD.setStock(Integer.parseInt(JOPSID("Stock: ")));
+		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));
+	}
+	
+	public String JOPSID(String msg) {
+		String s;
+		s = JOptionPane.showInputDialog(msg);
+		return s;
 	}
 }
