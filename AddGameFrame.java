@@ -3,6 +3,7 @@ import java.awt.List;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.io.*;
 
 public class AddGameFrame extends JFrame implements ActionListener {
 	Container cPane = getContentPane();
@@ -111,12 +112,41 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		return s;
 	}*/
 	
-	public ArrayList getList() {
+	/*public ArrayList getList() {
 		return gameList;
-	}
+	}*/
 	
 	public void displayList() {
-		JLabel lbl = new JLabel(GD.toString());
+		/*JLabel lbl = new JLabel(GD.toString());
+		cPane.add(lbl);*/
+		
+		//JPanel pnl = new JPanel(new GridLayout(8, 2));
+		JLabel lbl = new JLabel();
+		
+		try (BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"))) {
+			String line = null;
+			
+			while((line = br.readLine()) != null) {
+				lbl.setText(line + "\n");
+			}
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "File not found");
+		}
+		
+		
+		
+		//pnl.add(lbl);
 		cPane.add(lbl);
 	}
+	
+	/*void displayFile() {
+		try (BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"))) {
+   			String line = null;
+   		while ((line = br.readLine()) != null) {
+       		System.out.println(line);
+   			}
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "File not found");
+		}
+	}*/
 }

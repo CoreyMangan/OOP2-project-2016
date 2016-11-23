@@ -13,6 +13,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	File f = new File("GameDetails.txt");
 	String s;
 	GameDetails GD = new GameDetails();
+	SaleDetails SD = new SaleDetails();
 	ArrayList gameList = new ArrayList();
 	
 	//Setup JFrame
@@ -82,10 +83,10 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		
 		//Action when "Display" is pressed
 		if(menuName.equals("Display")) {
-			readFile();
+			//readFile();
 			AddGameFrame agf = new AddGameFrame();
 			agf.setVisible(true);
-			JOptionPane.showMessageDialog(null, gameList);
+			//JOptionPane.showMessageDialog(null, gameList);
 		}
 	}
 	
@@ -200,13 +201,16 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		GD.setGenre(JOPSID("Genre: "));
 		GD.setAgeRating(Integer.parseInt(JOPSID("Age Rating: ")));
 		GD.setPlatform(JOPSID("Platform: "));
-		/*GD.setReleaseDate(JOPSID("Release Date: "));
+		GD.setReleaseDate(JOPSID("Release Date: "));
 		GD.setUsedPrice(Float.parseFloat(JOPSID("Used Price: ")));
 		GD.setNewPrice(Float.parseFloat(JOPSID("New Price: ")));
 		GD.setStock(Integer.parseInt(JOPSID("Stock: ")));
-		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));*/
+		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));
+		//GD.setSD(JOPSID("test: "));
 		
-		gameList.add(GD.toString());
+		System.out.println(GD.getSD());
+		
+		gameList.add(GD.toString() + "\n");
 		JOptionPane.showMessageDialog(null, "Details added to Game List");
 	}
 	
