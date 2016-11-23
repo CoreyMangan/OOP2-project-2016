@@ -21,7 +21,7 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		setLocation(450,350);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		cPane.setLayout(layout);
+		//cPane.setLayout(layout);
 		//createLabels();
 		//createTextFields();
 		//createLayout();
@@ -42,10 +42,10 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		
 	}
 	
-	public void createLabels() {
-		lblTitle = new JLabel("Title: ");
+	//public void createLabels() {
+		//lblTitle = new JLabel("Title: ");
 		//lblTitle.setLocation(10,10);
-		cPane.add(lblTitle);
+		//cPane.add(lblTitle);
 		
 		/*lblDesc = new JLabel("Description: ");
 		//lblDesc.setLocation(20,10);
@@ -54,9 +54,9 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		/*lblGenre = new JLabel("Genre: ");
 		//lblGenre.setLocation(30,10);
 		cPane.add(lblGenre);*/
-	}
+	//}
 	
-	public void createTextFields() {
+	//public void createTextFields() {
 		/*for(int i = 0; i <= 2; i++) {
 			switch (i) {
 				case 0: s = tfTitle;
@@ -70,18 +70,18 @@ public class AddGameFrame extends JFrame implements ActionListener {
 			cPane.add(s);
 			GD.setTitle(s.getText());
 		}*/
-		createTextField(tfTitle);
-		GD.setTitle(tfTitle.getText());
+		//createTextField(tfTitle);
+		//GD.setTitle(tfTitle.getText());
 		
 		/*createTextField(tfDesc);
 		GD.setDesc(tfDesc.getText());*/
-	}
+	//}
 	
-	public void createTextField(JTextField field){
+	/*public void createTextField(JTextField field){
 		
 		field = new JTextField(15);
 		cPane.add(field);
-	}
+	}*/
 	
 	/*public void createLayout() {
 		
@@ -120,23 +120,26 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		/*JLabel lbl = new JLabel(GD.toString());
 		cPane.add(lbl);*/
 		
-		//JPanel pnl = new JPanel(new GridLayout(8, 2));
-		JLabel lbl = new JLabel();
+		JPanel pnl = new JPanel(new GridLayout(12, 2));
+		//JLabel lbl = new JLabel();
+		JTextArea jta = new JTextArea();
+		JScrollPane jsp = new JScrollPane(jta);
+		//jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		getContentPane().add(jsp);
+		jta.setEditable(false);
 		
 		try (BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"))) {
-			String line = null;
-			
+			String line;
+			//line = br.readLine();
 			while((line = br.readLine()) != null) {
-				lbl.setText(line + "\n");
+				/*JLabel lbl = new JLabel(line);
+				pnl.add(lbl);*/
+				jta.append(line + "\n");
 			}
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "File not found");
-		}
-		
-		
-		
-		//pnl.add(lbl);
-		cPane.add(lbl);
+		}	
+		cPane.add(jsp);
 	}
 	
 	/*void displayFile() {

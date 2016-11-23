@@ -195,6 +195,10 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		validate();
 	}
 	
+	/*public void openFile() {
+		
+	}*/
+	
 		void addDetails() {
 		GD.setTitle(JOPSID("Title: "));
 		GD.setDesc(JOPSID("Description: "));
@@ -222,10 +226,13 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	
 	public void saveFile(){
 		try {
-			FileOutputStream fos = new FileOutputStream("GameDetails.txt");
+			/*FileOutputStream fos = new FileOutputStream("GameDetails.txt");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(gameList);
-			oos.close();	
+			oos.close();*/
+			PrintWriter pw = new PrintWriter(new FileOutputStream("GameDetails.txt"));
+			pw.println(gameList);
+			pw.close();	
 		} catch(Exception ex3) {
 			JOptionPane.showMessageDialog(null, "File Not Found");
 		}

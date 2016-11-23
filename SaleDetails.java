@@ -55,6 +55,10 @@ public class SaleDetails {
 		return newPrice;
 	}
 	
+	public float getStock() {
+		return stock;
+	}
+	
 	public boolean getUsedAvailable() {
 		return usedAvailable;
 	}
