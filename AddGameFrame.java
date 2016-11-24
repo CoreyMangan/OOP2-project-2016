@@ -31,10 +31,10 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		
 		displayList();
 		
-		JTextArea jta2 = new JTextArea(5, 20);
+		/*JTextArea jta2 = new JTextArea(5, 20);
 		JScrollPane SP = new JScrollPane(jta2);
 		jta2.setEditable(false);
-		jta2.append(gameList.toString());
+		jta2.append(gameList.toString());*/
 		
 	}
 	
@@ -117,11 +117,7 @@ public class AddGameFrame extends JFrame implements ActionListener {
 	}*/
 	
 	public void displayList() {
-		/*JLabel lbl = new JLabel(GD.toString());
-		cPane.add(lbl);*/
-		
 		JPanel pnl = new JPanel(new GridLayout(12, 2));
-		//JLabel lbl = new JLabel();
 		JTextArea jta = new JTextArea();
 		JScrollPane jsp = new JScrollPane(jta);
 		//jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -130,10 +126,7 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		
 		try (BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"))) {
 			String line;
-			//line = br.readLine();
 			while((line = br.readLine()) != null) {
-				/*JLabel lbl = new JLabel(line);
-				pnl.add(lbl);*/
 				jta.append(line + "\n");
 			}
 		}catch(Exception e) {

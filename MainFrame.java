@@ -12,9 +12,13 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	boolean isFile;
 	File f = new File("GameDetails.txt");
 	String s;
-	GameDetails GD = new GameDetails();
-	SaleDetails SD = new SaleDetails();
+	//GameDetails GD = new GameDetails();
+	//SaleDetails SD = new SaleDetails();
 	ArrayList gameList = new ArrayList();
+	
+	/*int totNewPrice;
+	int totOldPrice;
+	int numOfGames;*/
 	
 	//Setup JFrame
 	public MainFrame() {
@@ -38,6 +42,16 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		cPane.add(text);
 		checkFileExists();
 		
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int r = JOptionPane.showConfirmDialog(null, "Are you sure you want to Exit?", "Confirm", JOptionPane.YES_NO_OPTION);
+				if(r == JOptionPane.YES_OPTION) {
+				JOptionPane.showMessageDialog(null, "Exiting Program... GoodBye!");
+				System.exit(0);
+				}
+			}
+		});
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -67,8 +81,11 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		
 		//Action when "Exit" is pressed
 		if(menuName.equals("Exit")) {
-			JOptionPane.showMessageDialog(null, "Exiting Program... GoodBye!");
-			System.exit(0);
+			int r = JOptionPane.showConfirmDialog(null, "Are you sure you want to Exit?", "Confirm", JOptionPane.YES_NO_OPTION);
+			if(r == JOptionPane.YES_OPTION) {
+				JOptionPane.showMessageDialog(null, "Exiting Program... GoodBye!");
+				System.exit(0);
+			}
 		}
 		
 		//Action when "Add" is pressed
@@ -86,6 +103,11 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 			//readFile();
 			AddGameFrame agf = new AddGameFrame();
 			agf.setVisible(true);
+			
+			/*System.out.println(GameDetails.numOfGames);
+			System.out.println(GameDetails.totUsedPrice);
+			System.out.println(GameDetails.totNewPrice);*/
+
 			//JOptionPane.showMessageDialog(null, gameList);
 		}
 	}
@@ -199,22 +221,23 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		
 	}*/
 	
-		void addDetails() {
-		GD.setTitle(JOPSID("Title: "));
-		GD.setDesc(JOPSID("Description: "));
-		GD.setGenre(JOPSID("Genre: "));
-		GD.setAgeRating(Integer.parseInt(JOPSID("Age Rating: ")));
-		GD.setPlatform(JOPSID("Platform: "));
-		GD.setReleaseDate(JOPSID("Release Date: "));
-		GD.setUsedPrice(Float.parseFloat(JOPSID("Used Price: ")));
-		GD.setNewPrice(Float.parseFloat(JOPSID("New Price: ")));
-		GD.setStock(Integer.parseInt(JOPSID("Stock: ")));
-		GD.setUsedAvailable(Boolean.parseBoolean(JOPSID("Used Available?: ")));
-		//GD.setSD(JOPSID("test: "));
-		
-		System.out.println(GD.getSD());
-		
-		gameList.add(GD.toString() + "\n");
+		void addDetails() {		
+		GameDetails GD = new GameDetails(
+			JOPSID("Title: "),
+			JOPSID("Description: "),
+			JOPSID("Genre: "),
+			Integer.parseInt(JOPSID("Age Rating: ")),
+			JOPSID("Platform: "),
+			new SaleDetails(
+				JOPSID("Release Date: "),
+				Float.parseFloat(JOPSID("Used Price: ")),
+				Float.parseFloat(JOPSID("New Price: ")),
+				Integer.parseInt(JOPSID("Stock: ")),
+				Boolean.parseBoolean(JOPSID("Used Available?: "))
+				)
+			);
+		System.out.println(GD.toString());
+		gameList.add(GD.toString());
 		JOptionPane.showMessageDialog(null, "Details added to Game List");
 	}
 	
@@ -243,7 +266,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		try {
 			FileInputStream fis = new FileInputStream("GameDetails.txt");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			//ois.readObject(oos);
+			//ois.readObject(fis);
 			ois.close();
 		}  catch(Exception ex4) {
 			JOptionPane.showMessageDialog(null, "File Not Found");

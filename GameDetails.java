@@ -6,7 +6,11 @@ public class GameDetails extends SaleDetails{
 	private String genre;
 	private int ageRating;
 	private String platform;
-	SaleDetails SD = new SaleDetails();
+	private SaleDetails SD;
+	//SaleDetails SD = new SaleDetails();
+	/*public static int totUsedPrice;
+	public static int totNewPrice;
+	public static int numOfGames;*/
 	
 	public GameDetails() {
 		this("Unkown", "Unkown", "Unkown", 0, "Unkown", new SaleDetails());
@@ -19,6 +23,10 @@ public class GameDetails extends SaleDetails{
 		setAgeRating(ageRating);
 		setPlatform(platform);
 		setSD(SD);
+		
+		/*totUsedPrice += getUsedPrice();
+		totNewPrice += getNewPrice();
+		numOfGames++;*/
 	}
 	
 	public void setTitle(String title) {
@@ -61,16 +69,21 @@ public class GameDetails extends SaleDetails{
 		return ageRating;
 	}
 	
-	public SaleDetails getSD() {
-		return SD;
-	}
-	
 	public String getPlatform() {
 		return platform;
 	}
 	
-	public String toString() {
-		return String.format("Title: %s\n Description: %s\n Genre: %s\n AgeRating: %d\n Platform: %s\n ReleaseDate: %s\n UsedPrice: %d\n NewPrice: %d\n Stock: %d\n UsedAvailable?: %s\n",
+	public SaleDetails getSD() {
+		return SD;
+	}
+	
+	/*public String toString() {
+		return String.format("Title: %s\n Description: %s\n Genre: %s\n AgeRating: %d\n Platform: %s\n ReleaseDate: %s\n UsedPrice: %.2f\n NewPrice: %.2f\n Stock: %d\n UsedAvailable?: %b\n",
 							getTitle(), getDesc(), getGenre(), getAgeRating(), getPlatform(), getReleaseDate(), getUsedPrice(), getNewPrice(), getStock(), getUsedAvailable());
+	}*/
+	
+	public String toString() {
+		return String.format("Title: %s\n Description: %s\n Genre: %s\n AgeRating: %d\n Platform: %s\n %s\n",
+							getTitle(), getDesc(), getGenre(), getAgeRating(), getPlatform(), getSD());
 	}
 }
