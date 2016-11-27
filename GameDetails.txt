@@ -5,47 +5,27 @@
  Platform: er
  Release Date: 34
  UsedPrice: 34.00
+ NewPrice 45.00
+ UsedAvailable true
+
+, Title: er
+ Description: er
+ Genre: er
+ AgeRating: 34
+ Platform: er
+ Release Date: 34
+ UsedPrice: 34.00
  NewPrice 34.00
  UsedAvailable true
 
-, Title: ad
- Description: ad
- Genre: af
- AgeRating: 46
- Platform: dg
- Release Date: 46
- UsedPrice: 46.25
- NewPrice 57.80
- UsedAvailable false
-
-, Title: agh
- Description: agb wagf
- Genre: poajg
- AgeRating: 35
- Platform: atag
- Release Date: t4t
- UsedPrice: 46.70
- NewPrice 463.46
- UsedAvailable false
-
-, Title: ad
- Description: ad
- Genre: ad
- AgeRating: 35
- Platform: ad
- Release Date: 35
- UsedPrice: 46.00
- NewPrice 47.00
- UsedAvailable false
-
-, Title: vb
- Description: vb
- Genre: vb
- AgeRating: 46
- Platform: cb
- Release Date: 57
- UsedPrice: 35.00
- NewPrice 24.00
+, Title: fg
+ Description: fg
+ Genre: fg
+ AgeRating: 34
+ Platform: df
+ Release Date: hh45
+ UsedPrice: 45.60
+ NewPrice 24.66
  UsedAvailable false
 
 ]

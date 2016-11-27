@@ -8,7 +8,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	JMenu fileMenu, gameMenu;
 	JMenuBar menuBar;
 	Container cPane = getContentPane();
-	JLabel text;
+	JLabel text, text2;
 	boolean isFile;
 	File f = new File("GameDetails.txt");
 	String s;
@@ -39,7 +39,10 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		menuBar.add(gameMenu);
 		
 		text = new JLabel();
+		text2 = new JLabel();
+		text2.setLocation(20,20);
 		cPane.add(text);
+		cPane.add(text2);
 		checkFileExists();
 		
 		this.addWindowListener(new WindowAdapter() {
@@ -65,11 +68,12 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		
 		//Action when "Save" is pressed
 		if(menuName.equals("Save")) {
-			//try {
+			try {
 				saveFile();
-			/*} catch(Exception ex3) {
+				text.setText("Game > Display to display the details in File.");
+			} catch(Exception ex3) {
 				JOptionPane.showMessageDialog(null, "File Not Found");
-			}*/
+			}
 			JOptionPane.showMessageDialog(null, "File Saved");
 		}
 		
@@ -92,10 +96,13 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		if(menuName.equals("Add")) {
 			if(isFile) {
 				addDetails();
+				text.setText("File > Save to save details to File.");
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "No File Found", "Error", JOptionPane.WARNING_MESSAGE);
 			}
+			
+			
 		}
 		
 		//Action when "Display" is pressed
@@ -103,6 +110,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 			//readFile();
 			AddGameFrame agf = new AddGameFrame();
 			agf.setVisible(true);
+			text.setText("Game > Add to add a new game to the list.");
 			
 			/*System.out.println(GameDetails.numOfGames);
 			System.out.println(GameDetails.totUsedPrice);
