@@ -12,13 +12,9 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	boolean isFile;
 	File f = new File("GameDetails.txt");
 	String s;
-	//GameDetails GD = new GameDetails();
-	//SaleDetails SD = new SaleDetails();
+	SaleDetails SD = new SaleDetails();
 	ArrayList gameList = new ArrayList();
-	
-	/*int totNewPrice;
-	int totOldPrice;
-	int numOfGames;*/
+	public static boolean editCheck;
 	
 	//Setup JFrame
 	public MainFrame() {
@@ -57,6 +53,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		});
 	}
 	
+	//Setting up what happens when you press each menu button
 	public void actionPerformed(ActionEvent e) {
 		String menuName= e.getActionCommand();
 		
@@ -81,6 +78,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		if(menuName.equals("Delete")) {
 			deleteTextFile();
 			checkFileExists();
+			text.setText("File > New to create a new file.");
 		}
 		
 		//Action when "Exit" is pressed
@@ -100,9 +98,16 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "No File Found", "Error", JOptionPane.WARNING_MESSAGE);
-			}
-			
-			
+			}				
+		}
+		
+		//Action when "Edit" is pressed
+		if(menuName.equals("Edit")) {
+			/*editCheck = true;
+			AddGameFrame agf = new AddGameFrame();
+			agf.setVisible(true);*/
+			int n = Integer.parseInt(JOPSID("Enter list number of game you want to edit: "));
+			gameList.set(n, JOPSID(gameList.toString()));
 		}
 		
 		//Action when "Display" is pressed
@@ -111,12 +116,6 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 			AddGameFrame agf = new AddGameFrame();
 			agf.setVisible(true);
 			text.setText("Game > Add to add a new game to the list.");
-			
-			/*System.out.println(GameDetails.numOfGames);
-			System.out.println(GameDetails.totUsedPrice);
-			System.out.println(GameDetails.totNewPrice);*/
-
-			//JOptionPane.showMessageDialog(null, gameList);
 		}
 	}
 	
@@ -221,6 +220,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		} else if(!f.exists()) {
 			isFile = false;
 			text.setText("");
+			text.setText("File > New to create a new file.");
 		}
 		validate();
 	}
@@ -237,7 +237,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 			Integer.parseInt(JOPSID("Age Rating: ")),
 			JOPSID("Platform: "),
 			new SaleDetails(
-				JOPSID("Release Date: "),
+				JOPSID("Release Date (DD-MM_YYYY): "),
 				Float.parseFloat(JOPSID("Used Price: ")),
 				Float.parseFloat(JOPSID("New Price: ")),
 				Integer.parseInt(JOPSID("Stock: ")),
@@ -247,6 +247,16 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		System.out.println(GD.toString());
 		gameList.add(GD.toString());
 		JOptionPane.showMessageDialog(null, "Details added to Game List");
+		
+		String boolAnswer = String.valueOf(SD.getUsedAvailable());
+		System.out.println(boolAnswer);
+		if(boolAnswer.toLowerCase() == "t" || boolAnswer == "true" || boolAnswer.toLowerCase() == "y" || boolAnswer == "yes")
+			SD.setUsedAvailable(true);
+			//GD.getSD().setUsedAvailable(true);
+			
+		GD.numOfGames++;
+		GD.totUsedPrice += GD.getSD().getUsedPrice();
+		GD.totNewPrice += GD.getSD().getNewPrice();
 	}
 	
 	public String JOPSID(String msg) {

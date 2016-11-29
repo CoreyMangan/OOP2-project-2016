@@ -1,4 +1,4 @@
- import java.awt.*;
+import java.awt.*;
 
 /* Title, Desc, Genre, Age Rating, Platform, | Release Date, usedPrice, newPrice, stock, usedAvailable? */
 
@@ -22,7 +22,7 @@ public class SaleDetails {
 		setUsedAvailable(usedAvailable);
 	}
 	
-	//Accessors
+	//Mutators
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
@@ -43,6 +43,7 @@ public class SaleDetails {
 		this.usedAvailable = usedAvailable;
 	}
 	
+	//Accessors
 	public String getReleaseDate() {
 		return releaseDate;
 	}

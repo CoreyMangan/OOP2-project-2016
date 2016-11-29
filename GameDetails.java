@@ -7,11 +7,12 @@ public class GameDetails extends SaleDetails{
 	private int ageRating;
 	private String platform;
 	private SaleDetails SD;
-	//SaleDetails SD = new SaleDetails();
-	/*public static int totUsedPrice;
-	public static int totNewPrice;
-	public static int numOfGames;*/
 	
+	public static float totUsedPrice;
+	public static float totNewPrice;
+	public static int numOfGames;
+	
+	//Constructors
 	public GameDetails() {
 		this("Unkown", "Unkown", "Unkown", 0, "Unkown", new SaleDetails());
 	}
@@ -23,12 +24,9 @@ public class GameDetails extends SaleDetails{
 		setAgeRating(ageRating);
 		setPlatform(platform);
 		setSD(SD);
-		
-		/*totUsedPrice += getUsedPrice();
-		totNewPrice += getNewPrice();
-		numOfGames++;*/
 	}
 	
+	//Mutators
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -53,6 +51,7 @@ public class GameDetails extends SaleDetails{
 		this.SD = SD;
 	}
 	
+	//Accessors
 	public String getTitle() {
 		return title;
 	}
@@ -77,11 +76,7 @@ public class GameDetails extends SaleDetails{
 		return SD;
 	}
 	
-	/*public String toString() {
-		return String.format("Title: %s\n Description: %s\n Genre: %s\n AgeRating: %d\n Platform: %s\n ReleaseDate: %s\n UsedPrice: %.2f\n NewPrice: %.2f\n Stock: %d\n UsedAvailable?: %b\n",
-							getTitle(), getDesc(), getGenre(), getAgeRating(), getPlatform(), getReleaseDate(), getUsedPrice(), getNewPrice(), getStock(), getUsedAvailable());
-	}*/
-	
+	//formating	
 	public String toString() {
 		return String.format("Title: %s\n Description: %s\n Genre: %s\n AgeRating: %d\n Platform: %s\n %s\n",
 							getTitle(), getDesc(), getGenre(), getAgeRating(), getPlatform(), getSD());
