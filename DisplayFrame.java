@@ -5,15 +5,17 @@ import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 
-public class AddGameFrame extends JFrame implements ActionListener {
+public class DisplayFrame extends JFrame implements ActionListener {
 	Container cPane = getContentPane();
 	GameDetails GD = new GameDetails();
 	FlowLayout layout = new FlowLayout();
 	JTextField s;
+	JMenu menu;
+	JMenuBar searchMenu;
 	
 	//ArrayList gameList = new ArrayList();
 	
-	public AddGameFrame() {
+	public DisplayFrame() {
 		super("Add Game");
 		setSize(500,500);
 		setLocation(450,350);
@@ -32,6 +34,7 @@ public class AddGameFrame extends JFrame implements ActionListener {
 		JPanel pnl = new JPanel(new GridLayout(12, 2));
 		JTextArea jta = new JTextArea();
 		JScrollPane jsp = new JScrollPane(jta);
+		jta.setBackground(new Color (0x99CCFF));
 		
 		getContentPane().add(jsp);
 		

@@ -5,27 +5,7 @@
  Platform: er
  Release Date: 34
  UsedPrice: 34.00
- NewPrice 34.00
- UsedAvailable true
-
-, Title: ty
- Description: ty
- Genre: ty
- AgeRating: 56
- Platform: ty
- Release Date: 56
- UsedPrice: 45.77
- NewPrice 34.77
- UsedAvailable false
-
-, Title: vf
- Description: vf
- Genre: vf
- AgeRating: 65
- Platform: yui
- Release Date: 34-24-55
- UsedPrice: 23.45
- NewPrice 67.99
+ NewPrice 35.00
  UsedAvailable true
 
 ]

@@ -8,10 +8,10 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	JMenu fileMenu, gameMenu;
 	JMenuBar menuBar;
 	Container cPane = getContentPane();
-	JLabel text, text2;
+	JLabel text;
 	boolean isFile;
 	File f = new File("GameDetails.txt");
-	String s;
+	//String s;
 	SaleDetails SD = new SaleDetails();
 	ArrayList gameList = new ArrayList();
 	public static boolean editCheck;
@@ -21,12 +21,13 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		super("eGames System");
 		setSize(500,500);
 		setLocation(250,200);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//Calling methods
 		createFileMenu();
 		createGameMenu();
 		
+		//Setting up menu and menuBar
 		cPane.setLayout(new FlowLayout());
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -34,13 +35,12 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		menuBar.add(fileMenu);
 		menuBar.add(gameMenu);
 		
+		//Adding text
 		text = new JLabel();
-		text2 = new JLabel();
-		text2.setLocation(20,20);
 		cPane.add(text);
-		cPane.add(text2);
 		checkFileExists();
 		
+		//What happens when you click the X button
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -49,6 +49,8 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 				JOptionPane.showMessageDialog(null, "Exiting Program... GoodBye!");
 				System.exit(0);
 				}
+				else
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			}
 		});
 	}
@@ -112,8 +114,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		
 		//Action when "Display" is pressed
 		if(menuName.equals("Display")) {
-			//readFile();
-			AddGameFrame agf = new AddGameFrame();
+			DisplayFrame agf = new DisplayFrame();
 			agf.setVisible(true);
 			text.setText("Game > Add to add a new game to the list.");
 		}
@@ -213,6 +214,7 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 			}
 	}
 	
+	//Checking if GameDetails file exists
 	public void checkFileExists() {
 		if(f.exists()) {
 			isFile = true;
@@ -225,11 +227,8 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 		validate();
 	}
 	
-	/*public void openFile() {
-		
-	}*/
-	
-		void addDetails() {		
+	//Entering in details for list
+	public void addDetails() {		
 		GameDetails GD = new GameDetails(
 			JOPSID("Title: "),
 			JOPSID("Description: "),
@@ -244,33 +243,34 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 				Boolean.parseBoolean(JOPSID("Used Available?: "))
 				)
 			);
-		System.out.println(GD.toString());
+			
+		//Adding the details entered to the arraylist
 		gameList.add(GD.toString());
 		JOptionPane.showMessageDialog(null, "Details added to Game List");
 		
+		//trying to get boolean to accept something other than "true" as true
 		String boolAnswer = String.valueOf(SD.getUsedAvailable());
 		System.out.println(boolAnswer);
 		if(boolAnswer.toLowerCase() == "t" || boolAnswer == "true" || boolAnswer.toLowerCase() == "y" || boolAnswer == "yes")
 			SD.setUsedAvailable(true);
 			//GD.getSD().setUsedAvailable(true);
 			
+		//Calculating info
 		GD.numOfGames++;
 		GD.totUsedPrice += GD.getSD().getUsedPrice();
 		GD.totNewPrice += GD.getSD().getNewPrice();
 	}
 	
+	//shortcut method
 	public String JOPSID(String msg) {
 		String s;
 		s = JOptionPane.showInputDialog(msg);
 		return s;
 	}
 	
+	//Saving details in arraylist to the save file
 	public void saveFile(){
 		try {
-			/*FileOutputStream fos = new FileOutputStream("GameDetails.txt");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(gameList);
-			oos.close();*/
 			PrintWriter pw = new PrintWriter(new FileOutputStream("GameDetails.txt"));
 			pw.println(gameList);
 			pw.close();	
@@ -278,16 +278,5 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 			JOptionPane.showMessageDialog(null, "File Not Found");
 		}
 		
-	}
-	
-	public void readFile() {
-		try {
-			FileInputStream fis = new FileInputStream("GameDetails.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			//ois.readObject(fis);
-			ois.close();
-		}  catch(Exception ex4) {
-			JOptionPane.showMessageDialog(null, "File Not Found");
-		}
 	}
 }

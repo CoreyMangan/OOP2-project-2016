@@ -1,5 +1,10 @@
 import java.awt.*;
 
+/** The GameDetails class extends SaleDetails
+ *	This class enters the values for the Games that will be displayer 
+ *	@author	Corey mangan
+ *	@Date 	29/11/2016	*/
+
 public class GameDetails extends SaleDetails{
 	private String title;
 	private String desc;
@@ -13,10 +18,15 @@ public class GameDetails extends SaleDetails{
 	public static int numOfGames;
 	
 	//Constructors
+	/** GameDetails Constructor with no arguments */
 	public GameDetails() {
 		this("Unkown", "Unkown", "Unkown", 0, "Unkown", new SaleDetails());
 	}
 	
+	/** GameDetails Constructor with arguments, enter in values 
+	 *	@param	Title	The title of the game
+	 *	@param	Desc	The description or quick summary about the game
+	 *	@param Genre	The genre of the game e.g. Action, RPG, FPS, Platformer, etc..	*/	
 	public GameDetails(String title, String desc, String genre, int ageRating, String platform, SaleDetails SD) {
 		setTitle(title);
 		setDesc(desc);
