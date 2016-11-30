@@ -5,13 +5,21 @@ import java.awt.event.*;
 import java.util.*;
 import java.io.*;
 
-public class DisplayFrame extends JFrame implements ActionListener {
+public class DisplayFrame extends JFrame implements KeyListener {
 	Container cPane = getContentPane();
 	GameDetails GD = new GameDetails();
 	FlowLayout layout = new FlowLayout();
 	JTextField s;
-	JMenu menu;
-	JMenuBar searchMenu;
+	JTextField search;
+	JMenuBar menuBar;
+	
+	JPanel pnl = new JPanel(new GridLayout(12, 2));
+	JTextArea jta = new JTextArea();
+	JScrollPane jsp = new JScrollPane(jta);
+	
+	
+	JTextArea jta2 = new JTextArea();
+
 	
 	//ArrayList gameList = new ArrayList();
 	
@@ -21,19 +29,22 @@ public class DisplayFrame extends JFrame implements ActionListener {
 		setLocation(450,350);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
+		search = new JTextField();
+		search.addKeyListener(this);
+		
+		menuBar = new JMenuBar();
+
+		setJMenuBar(menuBar);
+		menuBar.add(search);
+		
+		
 		//gameList.add(GD.toString());		
 		displayList();
-	}
-	
-	public void actionPerformed(ActionEvent e) {
 		
 	}
 	
 	//Displaying the list that is in the save file
 	public void displayList() {
-		JPanel pnl = new JPanel(new GridLayout(12, 2));
-		JTextArea jta = new JTextArea();
-		JScrollPane jsp = new JScrollPane(jta);
 		jta.setBackground(new Color (0x99CCFF));
 		
 		getContentPane().add(jsp);
@@ -60,5 +71,57 @@ public class DisplayFrame extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "File not found");
 		}	
 		cPane.add(jsp);
+	}
+	
+	public void keyPressed(KeyEvent e) {
+		if(e.getSource() == search) {
+			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				
+			try (BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"))) {
+			String line;
+			while((line = br.readLine()) != null) {
+				if(line.contains(search.getText())) {
+					jta2.append(line + "\n");
+					JOptionPane.showMessageDialog(null, jta2);
+				}
+			}
+		}catch(Exception ex) {
+			JOptionPane.showMessageDialog(null, "File not found");
+		}	
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				/*//Scanner scanner = new Scanner("GameDetails.txt");
+				BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"));
+				while(br.readLine() != null) {
+					//String lineFromLine = scanner.nextLine();
+					if(br.readLine().contains("test")) {
+						System.out.println("Found it");
+					}
+					else{
+						System.out.println("search not found");
+					}
+				}*/
+			}
+		}
+	}
+	
+	public void keyTyped(KeyEvent e) {
+		
+	}
+	
+	public void keyReleased(KeyEvent e) {
+		
 	}
 }
