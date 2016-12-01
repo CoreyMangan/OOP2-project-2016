@@ -108,8 +108,30 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 			/*editCheck = true;
 			AddGameFrame agf = new AddGameFrame();
 			agf.setVisible(true);*/
-			int n = Integer.parseInt(JOPSID("Enter list number of game you want to edit: "));
-			gameList.set(n, JOPSID(gameList.toString()));
+			//int n = Integer.parseInt(JOPSID("Enter list number of game you want to edit: "));
+			//gameList.set(n, JOPSID(gameList.toString()));
+			
+			try (BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"))) {
+				String line;
+				int lines = 0;
+				String search = JOPSID("Enter value you want to edit");
+				String edit = JOPSID("Enter value you want to change it to");
+				while((line = br.readLine()) != null) {
+					lines++;
+					if(line.contains(search)) {
+						System.out.println(search);
+						System.out.println(lines);
+						System.out.println(edit);
+						//gameList.set(lines, edit);
+						//gameList.add(line.replace(search, edit));
+						JOptionPane.showMessageDialog(null, "replaced " + search + " to " + edit);
+						gameList.set(lines - 1, line.replace(search, edit));
+					}
+				}
+				}catch(Exception ex) {
+					JOptionPane.showMessageDialog(null, "File not found");
+				}
+			
 		}
 		
 		//Action when "Display" is pressed

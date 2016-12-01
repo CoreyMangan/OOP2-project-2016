@@ -30,6 +30,7 @@ public class DisplayFrame extends JFrame implements KeyListener {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		search = new JTextField();
+		search.setToolTipText("Enter Title of game to search");
 		search.addKeyListener(this);
 		
 		menuBar = new JMenuBar();
@@ -75,44 +76,21 @@ public class DisplayFrame extends JFrame implements KeyListener {
 	
 	public void keyPressed(KeyEvent e) {
 		if(e.getSource() == search) {
-			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-				
-			try (BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"))) {
-			String line;
-			while((line = br.readLine()) != null) {
-				if(line.contains(search.getText())) {
-					jta2.append(line + "\n");
-					JOptionPane.showMessageDialog(null, jta2);
+			if(e.getKeyCode() == KeyEvent.VK_ENTER) {	
+				try (BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"))) {
+				String line;
+				while((line = br.readLine()) != null) {
+					//jta2.append(line + "\n");
+					if(line.contains("Title: " + search.getText())) {
+						jta2.append(line + "\n" + br.readLine() + "\n" + br.readLine() + br.readLine() + "\n" + br.readLine() + 
+						"\n" + br.readLine() + "\n" + br.readLine() + "\n" + br.readLine() + "\n" + br.readLine() + "\n" + br.readLine() + "\n");
+						JOptionPane.showMessageDialog(null, jta2);
+					}
 				}
-			}
-		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "File not found");
-		}	
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				/*//Scanner scanner = new Scanner("GameDetails.txt");
-				BufferedReader br = new BufferedReader(new FileReader("GameDetails.txt"));
-				while(br.readLine() != null) {
-					//String lineFromLine = scanner.nextLine();
-					if(br.readLine().contains("test")) {
-						System.out.println("Found it");
-					}
-					else{
-						System.out.println("search not found");
-					}
-				}*/
+				}catch(Exception ex) {
+					JOptionPane.showMessageDialog(null, "File not found");
+				}	
+			
 			}
 		}
 	}
