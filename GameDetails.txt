@@ -1,0 +1,11 @@
+[Title: test
+ Description: er
+ Genre: eh
+ AgeRating: 23
+ Platform: xbox
+ Release Date: 23-44-5252
+ UsedPrice: 23.99
+ NewPrice 56.99
+ UsedAvailable true
+
+]

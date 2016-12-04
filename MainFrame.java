@@ -5,15 +5,15 @@ import java.io.*;
 import java.util.*;
 
 public class MainFrame extends JFrame implements ActionListener, Serializable{
-	JMenu fileMenu, gameMenu;
-	JMenuBar menuBar;
-	Container cPane = getContentPane();
-	JLabel text;
-	boolean isFile;
-	File f = new File("GameDetails.txt");
-	SaleDetails SD = new SaleDetails();
-	ArrayList gameList = new ArrayList();
-	public static boolean editCheck;
+	private JMenu fileMenu, gameMenu;
+	private JMenuBar menuBar;
+	private Container cPane = getContentPane();
+	private JLabel text;
+	private boolean isFile;
+	public File f = new File("GameDetails.txt");
+	public SaleDetails SD = new SaleDetails();
+	public ArrayList gameList = new ArrayList();
+	//public static boolean editCheck;
 	
 	//Setup JFrame
 	public MainFrame() {

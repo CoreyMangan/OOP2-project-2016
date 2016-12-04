@@ -6,19 +6,19 @@ import java.util.*;
 import java.io.*;
 
 public class DisplayFrame extends JFrame implements KeyListener {
-	Container cPane = getContentPane();
-	GameDetails GD = new GameDetails();
-	FlowLayout layout = new FlowLayout();
-	JTextField s;
-	JTextField search;
-	JMenuBar menuBar;
+	private Container cPane = getContentPane();
+	private FlowLayout layout = new FlowLayout();
+	private JTextField s;
+	private JTextField search;
+	private JMenuBar menuBar;
+	public GameDetails GD = new GameDetails();
 	
-	JPanel pnl = new JPanel(new GridLayout(12, 2));
-	JTextArea jta = new JTextArea();
-	JScrollPane jsp = new JScrollPane(jta);
+	private JPanel pnl = new JPanel(new GridLayout(12, 2));
+	private JTextArea jta = new JTextArea();
+	private JScrollPane jsp = new JScrollPane(jta);
 	
 	
-	JTextArea jta2 = new JTextArea();
+	private JTextArea jta2 = new JTextArea();
 
 	
 	//ArrayList gameList = new ArrayList();
