@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /** The GameDetails class extends SaleDetails
- *	This class enters the values for the Games that will be displayer 
+ *	This class enters the details for the Games that will be displayed
  *	@author	Corey mangan
  *	@Date 	29/11/2016	*/
 
@@ -24,9 +24,12 @@ public class GameDetails extends SaleDetails{
 	}
 	
 	/** GameDetails Constructor with arguments, enter in values 
-	 *	@param	Title	The title of the game
-	 *	@param	Desc	The description or quick summary about the game
-	 *	@param Genre	The genre of the game e.g. Action, RPG, FPS, Platformer, etc..	*/	
+	 *	@param	Title		The title of the game(string)
+	 *	@param	Desc		The description or quick summary about the game(string)
+	 *	@param	Genre		The genre of the game e.g. Action, RPG, FPS, Platformer, etc..(string)
+	 *	@param	AgeRating	The age you have to be to purchase the game(int)
+	 *	@param	Platform	The platform this game is on e.g. xbox, ps4, pc, etc..(string)
+	 *	@param	SD			Gets the rest of the details from the SaleDetails class(releaseDate, usedPrice, newPrice, stock, usedAvailable) */
 	public GameDetails(String title, String desc, String genre, int ageRating, String platform, SaleDetails SD) {
 		setTitle(title);
 		setDesc(desc);

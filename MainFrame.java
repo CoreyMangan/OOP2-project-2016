@@ -11,7 +11,6 @@ public class MainFrame extends JFrame implements ActionListener, Serializable{
 	JLabel text;
 	boolean isFile;
 	File f = new File("GameDetails.txt");
-	//String s;
 	SaleDetails SD = new SaleDetails();
 	ArrayList gameList = new ArrayList();
 	public static boolean editCheck;
