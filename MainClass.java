@@ -1,3 +1,7 @@
+/**
+ *	This is the main driver class.
+ *	@author Corey Mangan
+ */
 import javax.swing.*;
 import java.awt.*;
 

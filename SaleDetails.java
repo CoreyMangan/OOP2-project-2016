@@ -1,3 +1,7 @@
+/**
+ *	This class enters the sale details for the Games that will be displayed.
+ *	@author Corey Mangan
+ */
 import java.awt.*;
 
 /* Title, Desc, Genre, Age Rating, Platform, | Release Date, usedPrice, newPrice, stock, usedAvailable? */

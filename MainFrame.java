@@ -1,3 +1,7 @@
+/**
+ *	This is the main class that does most of the work.
+ *	@author Corey Mangan
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

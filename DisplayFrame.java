@@ -1,3 +1,7 @@
+/**
+ *	This class adds a new jframe that displays the list of games in the save file.
+ *	@author Corey Mangan
+ */
 import javax.swing.*;
 import java.awt.List;
 import java.awt.*;

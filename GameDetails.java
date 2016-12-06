@@ -1,9 +1,9 @@
-import java.awt.*;
-
 /** The GameDetails class extends SaleDetails
- *	This class enters the details for the Games that will be displayed
+ *	This class enters the details for the Games that will be displayed.
  *	@author	Corey mangan
- *	@Date 	29/11/2016	*/
+ *	@Date 	29/11/2016	
+ */
+import java.awt.*;
 
 public class GameDetails extends SaleDetails{
 	private String title;
