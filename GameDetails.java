@@ -40,56 +40,69 @@ public class GameDetails extends SaleDetails{
 	}
 	
 	//Mutators
+	/** @param setTitle	Sets the title of game , returns void, enters string */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
+	/** @param setDesc	Sets the description of game, returns void, enters string */
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
 	
+	/** @param setGenre	Sets the genre of game, returns void, enters string */
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 	
+	/** @param setAgeRating	Sets the age rating of game, returns void, enters int */
 	public void setAgeRating(int ageRating) {
 		this.ageRating = ageRating;
 	}
 	
+	/** @param setPlatform	Sets the platorm of game, returns void, enters string */
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
 	
+	/** @param setSD	Sets the @link SaleDetails of game, returns void, enters SaleDetails */
 	public void setSD(SaleDetails SD) {
 		this.SD = SD;
 	}
 	
 	//Accessors
+	/** @param getTitle	Gets the title of game, returns string */
 	public String getTitle() {
 		return title;
 	}
 	
+	/** @param getDesc	Gets the description of game, returns string */
 	public String getDesc() {
 		return desc;
 	}
 	
+	/** @param getGenre	Gets the genre of game, returns string */
 	public String getGenre() {
 		return genre;
 	}
 	
+	/** @param getAgeRating	Gets the age rating of game, returns int */
 	public int getAgeRating() {
 		return ageRating;
 	}
 	
+	/** @param getPlatform	Gets the platform of game, returns string */
 	public String getPlatform() {
 		return platform;
 	}
 	
+	/** @param getSD	Gets the @link SaleDetails of game, returns SaleDetails */
 	public SaleDetails getSD() {
 		return SD;
 	}
 	
 	//formating	
+	/** @param toString	formats data, returns string */
 	public String toString() {
 		return String.format("Title: %s\n Description: %s\n Genre: %s\n AgeRating: %d\n Platform: %s\n %s\n",
 							getTitle(), getDesc(), getGenre(), getAgeRating(), getPlatform(), getSD());
